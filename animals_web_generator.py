@@ -7,20 +7,24 @@ def load_data(file_path):
 
 animals_data = load_data('animals_data.json')
 
-def print_animal_details(animals):
+def animal_data(animals):
+    output = ''
     for animal in animals:
         if "name" in animal:
-            print(f"Name: {animal['name']}")
+            output += f"Name: {animal['name']}\n"
 
         if "characteristics" in animal and isinstance(animal["characteristics"], dict):
             if "diet" in animal["characteristics"]:
-                print(f"Diet: {animal['characteristics']['diet']}")
+                output += f"Diet: {animal['characteristics']['diet']}\n"
 
         if "locations" in animal and isinstance(animal["locations"], list) and animal["locations"]:
-            print(f"Location: {animal['locations'][0]}")
+            output += f"Location: {animal['locations'][0]}\n"
 
         if "characteristics" in animal and isinstance(animal["characteristics"], dict):
             if "type" in animal["characteristics"]:
-                print(f"Type: {animal['characteristics']['type']}")
+                output += f"Type: {animal['characteristics']['type']}\n"
 
-print_animal_details(animals_data)
+    return output
+#animal_data(animals_data)
+
+print(animal_data(animals_data))
