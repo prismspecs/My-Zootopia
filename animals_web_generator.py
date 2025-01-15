@@ -124,5 +124,11 @@ if __name__ == "__main__":
     # ask user for animal name
     animal_name = input("Enter the name of the animal: ")
     animals_data = load_data_from_api(animal_name)
-    html_output = animal_data(animals_data)
+
+    # if animals_data is empty
+    if not animals_data:
+        html_output = f"<h2>The animal {animal_name} doesn't exist.</h2>"
+    else:
+        html_output = animal_data(animals_data)
+
     generate_html_file(html_output, "animals.html")
