@@ -1,10 +1,19 @@
 # note: set up a venv and install requests
 # python3 -m venv venv
 # source venv/bin/activate
-# pip install requests
+# pip install requests python-dotenv
 
 import json
 import requests
+from dotenv import load_dotenv
+import os
+
+# load the .env file
+load_dotenv()
+
+
+def get_api_key():
+    return os.getenv("API_KEY")
 
 
 def load_data(file_path):
@@ -19,9 +28,9 @@ def load_data(file_path):
 def load_data_from_api(name):
     # code to fetch data from API
     api_url = "https://api.api-ninjas.com/v1/animals?name={}".format(name)
-    response = requests.get(
-        api_url, headers={"X-Api-Key": "1tXZqc2ngCVEdXAkrdDnsA==yv98w6R8X9n4LUSC"}
-    )
+
+    api_key = get_api_key()
+    response = requests.get(api_url, headers={"X-Api-Key": api_key})
     if response.status_code == requests.codes.ok:
         return response.json()
     else:

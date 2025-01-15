@@ -1,2 +1,4 @@
 # ignore the venv files
 venv/
+# ignore API key
+.env
