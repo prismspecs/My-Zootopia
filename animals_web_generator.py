@@ -38,10 +38,6 @@ def load_data_from_api(name):
         return "Error fetching data from API"
 
 
-animals_data = load_data_from_api("Fox")
-print(animals_data)
-
-
 def animal_data(animals):
     output = "<ul>"
     for animal in animals:
@@ -124,6 +120,9 @@ def generate_html_file(html_content, output_file):
 
 
 if __name__ == "__main__":
-    animals_data = load_data("animals_data.json")
+
+    # ask user for animal name
+    animal_name = input("Enter the name of the animal: ")
+    animals_data = load_data_from_api(animal_name)
     html_output = animal_data(animals_data)
     generate_html_file(html_output, "animals.html")
